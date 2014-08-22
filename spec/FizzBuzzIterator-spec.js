@@ -22,46 +22,46 @@ function NumberOutputStrategy()
 	}
 }
 
-function FizzNumberOutputStrategyDecorator(numberStrategy)
+function FizzOutputStrategyDecorator(outputStrategy)
 {
-	this.numberStrategy = numberStrategy;
+	this.outputStrategy = outputStrategy;
 
 	this.output = function(number)
 	{
-		return number % 3 == 0 ? "fizz" : this.numberStrategy.output(number);
+		return number % 3 == 0 ? "fizz" : this.outputStrategy.output(number);
 	}
 }
 
-function BuzzNumberOutputStrategyDecorator(numberStrategy)
+function BuzzOutputStrategyDecorator(outputStrategy)
 {
-	this.numberStrategy = numberStrategy;
+	this.outputStrategy = outputStrategy;
 
 	this.output = function(number)
 	{
-		return number % 5 == 0 ? "buzz" : this.numberStrategy.output(number);
+		return number % 5 == 0 ? "buzz" : this.outputStrategy.output(number);
 	}
 }
 
-function FizzBuzzNumberOutputStrategyDecorator(numberStrategy)
+function FizzBuzzOutputStrategyDecorator(outputStrategy)
 {
-	this.numberStrategy = numberStrategy;
+	this.outputStrategy = outputStrategy;
 
 	this.output = function(number)
 	{
 		return (number % 5 == 0) && (number % 3 == 0) ?
-			"fizzbuzz" : this.numberStrategy.output(number);
+			"fizzbuzz" : this.outputStrategy.output(number);
 	}
 }
 
-function FizzBuzzNumberOutputStrategyBuilder()
+function FizzBuzzOutputStrategyBuilder()
 {
-	this.numberOutputStrategy = function() 
+	this.outputStrategy = function() 
 	{
-		return new FizzBuzzNumberOutputStrategyDecorator
+		return new FizzBuzzOutputStrategyDecorator
 		(
-			new BuzzNumberOutputStrategyDecorator
+			new BuzzOutputStrategyDecorator
 			(
-				new FizzNumberOutputStrategyDecorator
+				new FizzOutputStrategyDecorator
 				(
 					new NumberOutputStrategy()
 				)
@@ -75,7 +75,7 @@ describe("NumberOutputGenerator", function() {
 	var generator = null;
 	beforeEach(function(){
 
-		var strategy = new FizzBuzzNumberOutputStrategyBuilder().numberOutputStrategy();
+		var strategy = new FizzBuzzOutputStrategyBuilder().outputStrategy();
 		generator = new NumberOutputGenerator(strategy);
 	});
 
