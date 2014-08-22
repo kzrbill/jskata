@@ -1,4 +1,4 @@
 // calculator
 exports.multiply = function (multiplier1, multiplier2) {
- 	return 6;
+ 	return multiplier1 * multiplier2;
 };
