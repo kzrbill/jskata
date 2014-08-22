@@ -1,4 +1,4 @@
-function FizzBuzzGenerator(outputStrategy)
+function NumberOutputGenerator(outputStrategy)
 {
 	this.outputStrategy = outputStrategy;
 
@@ -53,7 +53,7 @@ function FizzBuzzNumberOutputStrategyDecorator(numberStrategy)
 	}
 }
 
-function NumberOutputStrategyBuilder()
+function FizzBuzzNumberOutputStrategyBuilder()
 {
 	this.numberOutputStrategy = function() 
 	{
@@ -70,46 +70,54 @@ function NumberOutputStrategyBuilder()
 	}
 }
 
-describe("FizzBuzzGenerator", function() {
+describe("NumberOutputGenerator", function() {
 	
-	var iterator = null;
+	var generator = null;
 	beforeEach(function(){
 
-		var strategy = new NumberOutputStrategyBuilder().numberOutputStrategy();
-		iterator = new FizzBuzzGenerator(strategy);
+		var strategy = new FizzBuzzNumberOutputStrategyBuilder().numberOutputStrategy();
+		generator = new NumberOutputGenerator(strategy);
 	});
 
-	it("should create a new iterator", function() {
+	it("should create a new generator", function() {
 		
-		expect(iterator).toNotBe(null);
+		expect(generator).toNotBe(null);
 	});
 
 	it("should return an array of length 100", function() {
 
-		var expected = iterator.generate();
+		var items = generator.generate();
 
-		expect(expected.length).toBe(100);
+		expect(items.length).toBe(100);
 	});
 
 	it("should return fizz when we get the 3rd item", function() {
 		
-		var expected = iterator.generate();
+		var items = generator.generate();
 
-		expect(expected[2]).toBe("fizz");
+		expect(items[2]).toBe("fizz");
 	});
 
 	it("should return buzz when we get the 5th item", function() {
 
-		var expected = iterator.generate();
+		var items = generator.generate();
 
-		expect(expected[4]).toBe("buzz");
+		expect(items[4]).toBe("buzz");
 	});
 
 	it("should return fizzbuzz when we get the 15th item", function() {
 
-		var expected = iterator.generate();
+		var items = generator.generate();
 
-		expect(expected[14]).toBe("fizzbuzz");
+		expect(items[14]).toBe("fizzbuzz");
+	});
+
+	it("should return 15 when we get the 15th item, and we give the generator a number only strategy", function() {
+
+		generator = new NumberOutputGenerator(new NumberOutputStrategy());
+		var items = generator.generate();
+
+		expect(items[14]).toBe(15);
 	});
 
 });
