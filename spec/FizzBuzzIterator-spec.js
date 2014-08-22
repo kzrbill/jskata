@@ -1,7 +1,9 @@
 function FizzBuzzOutputStrategy()
 {
-
-
+	this.output = function(number)
+	{
+		return number % 3 == 0 ? "fizz" : "some thing";
+	}
 }
 
 function FizzBuzzIterator()
@@ -12,13 +14,12 @@ function FizzBuzzIterator()
 	{
 		var outputs = new Array();
 		for (var i = 1; i <= 100; i++) {
-			outputs.push(i == 3 ? "fizz" : "some thing");
+			outputs.push(this.outputStrategy.output(i));
 		};
 
 		return outputs;
 	}
 }
-
 
 describe("FizzBuzzIterator", function() {
 	
@@ -42,6 +43,4 @@ describe("FizzBuzzIterator", function() {
 
 		expect(expected[2]).toBe("fizz");
 	});
-
-
 });
