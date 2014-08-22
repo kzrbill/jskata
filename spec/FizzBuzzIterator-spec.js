@@ -1,49 +1,3 @@
-
-
-function FizzBuzzNumberOutputStrategyDecorator(numberStrategy)
-{
-	this.numberStrategy = numberStrategy;
-
-	this.output = function(number)
-	{
-		var output = this.numberStrategy.output(number);
-
-		return ((output % 5) == 0) && ((output % 3) == 0) ? "fizzbuzz" : output;
-	}
-}
-
-function FizzNumberOutputStrategyDecorator(numberStrategy)
-{
-	this.numberStrategy = numberStrategy;
-
-	this.output = function(number)
-	{
-		var output = this.numberStrategy.output(number);
-
-		return (number % 3) == 0 ? "fizz" : output;
-	}
-}
-
-function BuzzNumberOutputStrategyDecorator(numberStrategy)
-{
-	this.numberStrategy = numberStrategy;
-
-	this.output = function(number)
-	{
-		var output = this.numberStrategy.output(number);
-
-		return (output % 5) == 0 ? "buzz" : output;
-	}
-}
-
-function NumberOutputStrategy()
-{
-	this.output = function(number)
-	{
-		return number;
-	}
-}
-
 function FizzBuzzGenerator(outputStrategy)
 {
 	this.outputStrategy = outputStrategy;
@@ -60,15 +14,54 @@ function FizzBuzzGenerator(outputStrategy)
 	}
 }
 
+function NumberOutputStrategy()
+{
+	this.output = function(number)
+	{
+		return number;
+	}
+}
+
+function FizzNumberOutputStrategyDecorator(numberStrategy)
+{
+	this.numberStrategy = numberStrategy;
+
+	this.output = function(number)
+	{
+		return number % 3 == 0 ? "fizz" : this.numberStrategy.output(number);
+	}
+}
+
+function BuzzNumberOutputStrategyDecorator(numberStrategy)
+{
+	this.numberStrategy = numberStrategy;
+
+	this.output = function(number)
+	{
+		return number % 5 == 0 ? "buzz" : this.numberStrategy.output(number);
+	}
+}
+
+function FizzBuzzNumberOutputStrategyDecorator(numberStrategy)
+{
+	this.numberStrategy = numberStrategy;
+
+	this.output = function(number)
+	{
+		return (number % 5 == 0) && (number % 3 == 0) ?
+			"fizzbuzz" : this.numberStrategy.output(number);
+	}
+}
+
 function NumberOutputStrategyBuilder()
 {
 	this.numberOutputStrategy = function() 
 	{
-		return new FizzNumberOutputStrategyDecorator
+		return new FizzBuzzNumberOutputStrategyDecorator
 		(
 			new BuzzNumberOutputStrategyDecorator
 			(
-				new FizzBuzzNumberOutputStrategyDecorator
+				new FizzNumberOutputStrategyDecorator
 				(
 					new NumberOutputStrategy()
 				)
@@ -78,7 +71,6 @@ function NumberOutputStrategyBuilder()
 }
 
 describe("FizzBuzzGenerator", function() {
-	
 	
 	var iterator = null;
 	beforeEach(function(){
@@ -119,4 +111,5 @@ describe("FizzBuzzGenerator", function() {
 
 		expect(expected[14]).toBe("fizzbuzz");
 	});
+
 });
