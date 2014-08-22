@@ -13,7 +13,10 @@ function BuzzNumberOutputStrategyDecorator(numberStrategy)
 
 	this.output = function(number)
 	{
-		return this.numberStrategy.output(number);
+
+		var output = this.numberStrategy.output(number);
+
+		return (output % 5 == 0) ? "buzz" : output;;
 	}
 }
 
