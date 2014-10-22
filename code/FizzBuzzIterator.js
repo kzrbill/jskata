@@ -76,4 +76,3 @@ module.exports.NumberOutputStrategy 				 		= NumberOutputStrategy;
 module.exports.FizzOutputStrategyDecorator   		= FizzOutputStrategyDecorator;
 module.exports.BuzzOutputStrategyDecorator   		= BuzzOutputStrategyDecorator;
 module.exports.FizzBuzzOutputStrategyDecorator  = FizzBuzzOutputStrategyDecorator;
-
