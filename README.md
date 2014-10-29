@@ -8,7 +8,7 @@ Once you are set up with the prerequisites, delete the existing kata code and do
 
 A. To install node js go to http://nodejs.org/download/ and install.
 
-B. To install jasmine-node globally
+B. To install jasmine-node globally: 
 
 > npm install jasmine-node -g
 
