@@ -1,6 +1,9 @@
-{ 
-  "dependencies" :
-  {
-    "jasmine-node" : "latest"
-  }
+{
+    "name": "some-application",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies" :
+    {
+        "jasmine-node" : "latest"
+    }
 }

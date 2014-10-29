@@ -18,8 +18,8 @@ C. That's it your good to go.
 
 Autotest when tests change and run the tests when the code changes. Nice.
 
-> jasmine-node spec --autotest --watch code --color --verbose
+> jasmine-node tests --autotest --watch code --color --verbose
 
 Or to run tests manually
 
-> jasmine-node specs/*spec.js
+> jasmine-node tests/*spec.js
