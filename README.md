@@ -23,5 +23,3 @@ Autotest when tests change and run the tests when the code changes. Nice.
 Or to run tests manually
 
 > jasmine-node specs/*spec.js
-
-Please excuse the ridiculous FizzBuzz example kata code. This was for a coding workout and entertainment purposed only.
